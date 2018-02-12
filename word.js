@@ -6,9 +6,12 @@ function Word(word) {
 		this.letters.push(new Letter(word.charAt(i)));
 	}
 	this.displayWord = function(Letter) {
+		var string = "";
 		for (var i = 0; i < this.letters.length; i++) {
-			this.letters[i].displayLetter(Letter);
+			string = string.concat(this.letters[i].displayLetter(Letter));
 		}
+		
+		console.log(string);
 	}
 	this.checkChar = function(Letter) {
 		for (var i = 0; i < this.letters.length; i++) {
