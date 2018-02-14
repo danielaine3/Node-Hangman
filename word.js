@@ -17,8 +17,8 @@ function Word(word) {
 		}
 	}
 };
-module.export = Word;
+module.exports = Word;
 
-var newWord = new Word("hello");
-newWord.checkChar("o");
-newWord.displayWord();
+// var newWord = new Word("");
+// newWord.checkChar("o");
+// newWord.displayWord();
