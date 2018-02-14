@@ -19,6 +19,6 @@ function Word(word) {
 };
 module.exports = Word;
 
-// var newWord = new Word("");
-// newWord.checkChar("o");
-// newWord.displayWord();
+var newWord = new Word("");
+newWord.checkChar("o");
+newWord.displayWord();

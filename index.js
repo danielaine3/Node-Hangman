@@ -33,7 +33,6 @@ function WordSelect() {
 				console.log("Number of guesses remaining: " + this.guessesLeft);
 				console.log("Letters already guessed: " + this.lettersGuessed);
 				break;
-
 			default:
 				console.log("error");
 		}
@@ -49,6 +48,7 @@ function start() {
 	promptPlayer();
 }
 
+
 function promptPlayer() {
 	inquirer.prompt([
 			{type:"input", 
@@ -58,23 +58,23 @@ function promptPlayer() {
 	]).then(function(answer) {
 		var guess = answer.guess.toLowerCase();
 		if (WordSelect().lettersGuessed.indexOf(guess) === -1) {
-			wordSelect().lettersGuessed.push(guess);
-			var correct = wordSelect.word.checkChar(guess);
+			WordSelect().lettersGuessed.push(guess);
+			var correct = WordSelect.word.checkChar(guess);
 			if (correct) {
-				wordSelect().printResults("correct");
+				WordSelect().printResults("correct");
 			} else {
-				wordSelect().guessesLeft--;
-				wordSelect().printResults("incorrect");
+				WordSelect().guessesLeft--;
+				WordSelect().printResults("incorrect");
 			}
 		} else {
-			wordSelect().printResults("already guessed");
+			WordSelect().printResults("already guessed");
 			promptPlayer();
 		}
-		var winner = wordSelect().word.guessedWord() === wordSelect().word.randomWord;
+		var winner = WordSelect().word.guessedWord() === WordSelect().word.randomWord;
 
 		if (winner) {
 			results('YOU WIN!');
-		} else if (wordSelect().guessesLeft > 0) {
+		} else if (WordSelect().guessesLeft > 0) {
 			promptPlayer();
 		} else {
 			results ("You lost.");
@@ -82,13 +82,12 @@ function promptPlayer() {
 	});
 };
 
-
 function results(str) {
 	if (str === "YOU WIN!") {
 		console.log("YOU WIN!");
 	} else if (str === "You lost.") {
 		console.log("You lost.");
-		console.log("The word was " + wordSelect.word.randomWord);
+		console.log("The word was " + WordSelect.word.randomWord);
 	}
 
 	inquirer.prompt([
@@ -102,7 +101,7 @@ function results(str) {
 		if (choice.repononse == 'yes') {
 			start();
 		} else if (choice.response == 'no') {
-			wordSelect.endGame();
+			WordSelect.endGame();
 		}
 	});
 }
