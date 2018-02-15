@@ -97,18 +97,17 @@ function results(str) {
 			type: 'list',
 			message: 'Play again?',
 			choices: ['yes', 'no'],
-			name: 'play again'
+			name: 'again'
 		}
 		]).then(function(choice){
-			if (choice.repononse == 'yes') {
+			if (choice.again == 'yes') {
 				start();
-			} else if (choice.response == 'no') {
+			} else if (choice.again == 'no') {
 				wordSelect.endGame();
 			}
 		}
 	);
 }
-
 start();
 
 
