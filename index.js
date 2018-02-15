@@ -27,6 +27,7 @@ function WordSelect() {
 			case "correct":
 				console.log("CORRECT!");
 				console.log("Number of guesses remaining: " + this.guessesLeft);
+				console.log("Letters already guessed: " + this.lettersGuessed);
 				break;
 			case "incorrect":
 				console.log("INCORRECT!");
@@ -43,38 +44,39 @@ function WordSelect() {
 	}
 };
 
+var wordSelect = new WordSelect();
+
 function start() {
-	new WordSelect().newGame();
+	wordSelect.newGame();
 	promptPlayer();
 }
-
 
 function promptPlayer() {
 	inquirer.prompt([
 			{type:"input", 
 			message: "Guess a letter!",
-			name:"prompt"
+			name:"guess"
 		}
 	]).then(function(answer) {
 		var guess = answer.guess.toLowerCase();
-		if (WordSelect().lettersGuessed.indexOf(guess) === -1) {
-			WordSelect().lettersGuessed.push(guess);
-			var correct = WordSelect.word.checkChar(guess);
+		if (wordSelect.lettersGuessed.indexOf(guess) === -1) {
+			wordSelect.lettersGuessed.push(guess);
+			var correct = wordSelect.word.checkChar(guess);
 			if (correct) {
-				WordSelect().printResults("correct");
+				wordSelect.printResults("correct");
 			} else {
-				WordSelect().guessesLeft--;
-				WordSelect().printResults("incorrect");
+				wordSelect.guessesLeft--;
+				wordSelect.printResults("incorrect");
 			}
 		} else {
-			WordSelect().printResults("already guessed");
+			wordSelect.printResults("already guessed");
 			promptPlayer();
 		}
-		var winner = WordSelect().word.guessedWord() === WordSelect().word.randomWord;
+		var winner = wordSelect.word.displayWord() === wordSelect.word.randomWord;
 
 		if (winner) {
 			results('YOU WIN!');
-		} else if (WordSelect().guessesLeft > 0) {
+		} else if (wordSelect.guessesLeft > 0) {
 			promptPlayer();
 		} else {
 			results ("You lost.");
@@ -87,23 +89,24 @@ function results(str) {
 		console.log("YOU WIN!");
 	} else if (str === "You lost.") {
 		console.log("You lost.");
-		console.log("The word was " + WordSelect.word.randomWord);
+		console.log("The word was " + wordSelect.word.randomWord);
 	}
 
 	inquirer.prompt([
-	{
-		type: 'list',
-		message: 'Play again?',
-		choices: ['yes', 'no'],
-		name: 'play again'
-	}
-	]).then(function(choice){
-		if (choice.repononse == 'yes') {
-			start();
-		} else if (choice.response == 'no') {
-			WordSelect.endGame();
+		{
+			type: 'list',
+			message: 'Play again?',
+			choices: ['yes', 'no'],
+			name: 'play again'
 		}
-	});
+		]).then(function(choice){
+			if (choice.repononse == 'yes') {
+				start();
+			} else if (choice.response == 'no') {
+				wordSelect.endGame();
+			}
+		}
+	);
 }
 
 start();
