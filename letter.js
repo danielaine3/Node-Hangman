@@ -5,19 +5,19 @@ function Letter(char) {
 	this.displayLetter = function() {
 		//If the guessed value is true, display the letter guessed
 		if (this.guessed === true) {
-			// console.log("CORRECT!");
 			return this.letter;
-		//If the gussed value is fals, display a blank space in lieu of the letter
-		}else {
+		//If the gussed value is false, display a blank space in lieu of the letter
+		} else {
 			// console.log("That letter has not been guessed yet."
 			return "_ ";
 		}
 	};
-	this.guess = function(char) {
+	this.guess = function(guess) {
 		//If character guessed == a letter in word change guessed value to true
-		if (char === this.letter) {
+		if (guess === this.letter) {
 			this.guessed = true;
-		} 
+			return true;
+		}
 	};
 };
 module.exports = Letter;

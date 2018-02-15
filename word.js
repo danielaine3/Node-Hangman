@@ -9,16 +9,16 @@ function Word(word) {
 		for (var i = 0; i < this.letters.length; i++) {
 			string = string.concat(this.letters[i].displayLetter(Letter));
 		}	
-		console.log(string);
+		return(string);
 	}
 	this.checkChar = function(Letter) {
+		var isCorrect = false;
 		for (var i = 0; i < this.letters.length; i++) {
-			this.letters[i].guess(Letter);
+			if (this.letters[i].guess(Letter)) {
+				isCorrect = true;
+			}
 		}
+		return isCorrect;
 	}
 };
 module.exports = Word;
-
-var newWord = new Word("");
-newWord.checkChar("o");
-newWord.displayWord();

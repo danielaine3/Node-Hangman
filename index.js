@@ -2,22 +2,18 @@ var Word = require("./Word.js");
 var words = ['cat', 'dog', 'hello', 'goodbye', 'home', 'love'];
 var inquirer = require("inquirer");
 // var generateWord = require("");
-
 function WordSelect() {
 	this.guessesLeft = 6;
 	this.lettersGuessed = [];
-
 	this.newGame = function() {
 		this.guessesLeft = 6;
 		this.lettersGuessed = [];
 		this.word = this.randomWord();
 	};
-
 	this.randomWord = function() {
 		var randomWord = words[Math.floor(Math.random() * words.length)];
 		return new Word(randomWord);
 	};
-
 	this.printResults = function(str) {
 		switch(str) {
 			case "already guessed":
@@ -38,60 +34,58 @@ function WordSelect() {
 				console.log("error");
 		}
 	};
-
 	this.endGame = function() {
 		console.log("Game over.");
 	}
 };
-
 var wordSelect = new WordSelect();
-
 function start() {
 	wordSelect.newGame();
 	promptPlayer();
 }
-
 function promptPlayer() {
+	console.log(wordSelect.word.displayWord());
 	inquirer.prompt([
 			{type:"input", 
 			message: "Guess a letter!",
-			name:"guess"
+			name:"userGuess"
 		}
 	]).then(function(answer) {
-		var guess = answer.guess.toLowerCase();
-		if (wordSelect.lettersGuessed.indexOf(guess) === -1) {
-			wordSelect.lettersGuessed.push(guess);
-			var correct = wordSelect.word.checkChar(guess);
+		var userGuess = answer.userGuess.toLowerCase();
+		
+		if (wordSelect.lettersGuessed.indexOf(userGuess) === -1) {
+			wordSelect.lettersGuessed.push(userGuess);
+			var correct = wordSelect.word.checkChar(userGuess);
 			if (correct) {
 				wordSelect.printResults("correct");
+				promptPlayer();
 			} else {
 				wordSelect.guessesLeft--;
 				wordSelect.printResults("incorrect");
+				promptPlayer();
 			}
 		} else {
 			wordSelect.printResults("already guessed");
 			promptPlayer();
 		}
-		var winner = wordSelect.word.displayWord() === wordSelect.word.randomWord;
+		// var winner = wordSelect.word.displayWord() === wordSelect.word.randomWord;
 
-		if (winner) {
-			results('YOU WIN!');
-		} else if (wordSelect.guessesLeft > 0) {
-			promptPlayer();
-		} else {
-			results ("You lost.");
-		}
+		// if (winner) {
+		// 	results('YOU WIN!');
+		// } else if (wordSelect.guessesLeft > 0) {
+		// 	promptPlayer();
+		// } else {
+		// 	results ("You lost.");
+		// }
 	});
 };
-
 function results(str) {
 	if (str === "YOU WIN!") {
-		console.log("YOU WIN!");
+		console.log("CONGRATULATIONS! YOU WIN!");
 	} else if (str === "You lost.") {
-		console.log("You lost.");
+		console.log("Sorry, you lost.");
 		console.log("The word was " + wordSelect.word.randomWord);
 	}
-
 	inquirer.prompt([
 		{
 			type: 'list',
@@ -109,43 +103,3 @@ function results(str) {
 	);
 }
 start();
-
-
-
-
-		// if(word.checkChar(answer.letter, letters) == true) {
-		// 	console.log("CORRECT!");
-		// } else {
-		// 	guessesLeft--;
-		// 	if (guessesLeft > 0) {
-		// 		console.log("INCORRECT!");
-		// 		console.log(guessesLeft + "guesses remaining.");
-		// 	} else {
-		// 		console.log("INCORRECT! GAME OVER!");
-		// 	}
-		// }
-		// if(word.solved(letters) == false) {
-		// 	if (guessesLeft > 0) {
-		// 		makeGuess();
-		// 	}
-		// } else {
-		// 	displayWord;
-		// 	console.log("YOU WIN!");
-		// }
-		// });
-
-
-
-
-
-// this.solved = function(letters) {
-// 	var solved = true;
-// 	for (var i = 0; i < word.length; i++) {
-// 		if (letters[i].shown == '_ ') {
-// 			solved = false;
-// 		} else {
-// 			console.log("Congratulations! You won!")
-// 			//Display new word
-// 		}
-// 	}
-// };
