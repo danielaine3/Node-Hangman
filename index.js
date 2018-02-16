@@ -46,9 +46,20 @@ function start() {
 function promptPlayer() {
 	console.log(wordSelect.word.displayWord());
 	inquirer.prompt([
-			{type:"input", 
+		{
+			type:"input", 
 			message: "Guess a letter!",
-			name:"userGuess"
+			name:"userGuess",
+			validate: function(value) {
+				var alpha = /[a-z]+/;
+				if (value.length > 1) {
+					return "Please select one letter only.";
+				} else if (value.match(alpha)) {
+					return true;
+				} else {
+					return "Invalid letter.";
+				}
+			}
 		}
 	]).then(function(answer) {
 		var userGuess = answer.userGuess.toLowerCase();
@@ -58,25 +69,26 @@ function promptPlayer() {
 			var correct = wordSelect.word.checkChar(userGuess);
 			if (correct) {
 				wordSelect.printResults("correct");
-				promptPlayer();
 			} else {
 				wordSelect.guessesLeft--;
-				wordSelect.printResults("incorrect");
-				promptPlayer();
+				wordSelect.printResults("incorrect");	
 			}
 		} else {
 			wordSelect.printResults("already guessed");
-			promptPlayer();
-		}
-		// var winner = wordSelect.word.displayWord() === wordSelect.word.randomWord;
+			// promptPlayer();
+		};
 
-		// if (winner) {
-		// 	results('YOU WIN!');
-		// } else if (wordSelect.guessesLeft > 0) {
-		// 	promptPlayer();
-		// } else {
-		// 	results ("You lost.");
-		// }
+		var winner = wordSelect.word.displayWord() === wordSelect.randomWord;
+
+		console.log(winner);
+
+		if (winner) {
+			results('YOU WIN!');
+		} else if (wordSelect.guessesLeft > 0) {
+			promptPlayer();
+		} else {
+			results ("You lost.");
+		}
 	});
 };
 function results(str) {
@@ -103,3 +115,14 @@ function results(str) {
 	);
 }
 start();
+
+			// validate: function(value) {
+			// 	var alpha = /[a-z]+/;
+			// 	if (value.length > 1) {
+			// 		return "Please select one letter only.";
+			// 	} else if (value.match(alpha)) {
+			// 		return true;
+			// 	} else {
+			// 		return "Invalid letter.";
+			// 	}
+			// }
