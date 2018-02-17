@@ -20,5 +20,15 @@ function Word(word) {
 		}
 		return isCorrect;
 	}
+
+	this.checkCorrect = function() {
+		for (var i = 0; i < this.letters.length; i++) {
+			if (this.letters[i].guessed === false) {
+				return false;
+			}	else {
+				return true;
+			}
+		}
+	}
 };
 module.exports = Word;
