@@ -1,10 +1,11 @@
 var Word = require("./Word.js");
-var words = ['cat', 'dog', 'hello', 'goodbye', 'home', 'love'];
+var randomWords = require("random-words");
+var words = randomWords({ exactly: 2 });
 function WordSelect() {
-	this.guessesLeft = 6;
+	this.guessesLeft = 5;
 	this.lettersGuessed = [];
 	this.newGame = function() {
-		this.guessesLeft = 6;
+		this.guessesLeft = 5;
 		this.lettersGuessed = [];
 		this.word = this.randomWord();
 	};

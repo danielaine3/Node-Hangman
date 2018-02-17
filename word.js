@@ -22,13 +22,13 @@ function Word(word) {
 	}
 
 	this.checkCorrect = function() {
+		//console.log("word checked");
 		for (var i = 0; i < this.letters.length; i++) {
 			if (this.letters[i].guessed === false) {
 				return false;
-			}	else {
-				return true;
 			}
 		}
+		return true;
 	}
 };
 module.exports = Word;
