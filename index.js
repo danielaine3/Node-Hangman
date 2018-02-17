@@ -43,7 +43,6 @@ function promptPlayer() {
 		} else {
 		winner = false;
 		}
-
 		if (winner) {
 			results('YOU WIN!');
 		} else if (wordSelect.guessesLeft > 0) {

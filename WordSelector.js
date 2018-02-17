@@ -1,11 +1,11 @@
 var Word = require("./Word.js");
 var randomWords = require("random-words");
-var words = randomWords({ exactly: 2 });
+var words = randomWords({ exactly: 50 });
 function WordSelect() {
-	this.guessesLeft = 5;
+	this.guessesLeft = 10;
 	this.lettersGuessed = [];
 	this.newGame = function() {
-		this.guessesLeft = 5;
+		this.guessesLeft = 10;
 		this.lettersGuessed = [];
 		this.word = this.randomWord();
 	};

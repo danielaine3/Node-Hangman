@@ -20,7 +20,6 @@ function Word(word) {
 		}
 		return isCorrect;
 	}
-
 	this.checkCorrect = function() {
 		//console.log("word checked");
 		for (var i = 0; i < this.letters.length; i++) {
