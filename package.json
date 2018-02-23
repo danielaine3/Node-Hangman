@@ -1,0 +1,24 @@
+{
+  "name": "node-hangman",
+  "version": "1.0.0",
+  "description": "1. Enter the folder where the game files are stored on the computer 2. Input the command to pull up the game \"Node index.js\" 3. Follow the directions and input a letter 4. Continue to follow the prompts for a letter until you've completed the word, or you've run out of guesses 5. If you've won- celebrate a job well done. 6. If you lost- no big deal, it's just a game! 7. To play again select yes, if you don't, select no.",
+  "main": "index.js",
+  "dependencies": {
+    "inquirer": "^5.1.0",
+    "random-words": "^1.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danielaine3/Node-Hangman.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danielaine3/Node-Hangman/issues"
+  },
+  "homepage": "https://github.com/danielaine3/Node-Hangman#readme"
+}
