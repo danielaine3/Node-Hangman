@@ -1,10 +1,12 @@
 var WordSelector = require("./WordSelector.js");
 var wordSelect = new WordSelector();
 var inquirer = require("inquirer");
+
 function start() {
 	wordSelect.newGame();
 	promptPlayer();
 }
+
 function promptPlayer() {
 	console.log(wordSelect.word.displayWord());
 	inquirer.prompt([
@@ -52,6 +54,7 @@ function promptPlayer() {
 		}
 	});
 };
+
 function results(str) {
 	if (str === "YOU WIN!") {
 		console.log(wordSelect.word.displayWord());
@@ -75,4 +78,5 @@ function results(str) {
 		}
 	);
 }
+
 start();

@@ -23,5 +23,3 @@
 2. The following NPMs are used:
     1. Random-Words--> generates a set of 50 random words to select from. Used in the WordSelector.js file.
     2. Inquirer--> Allows the game to prompt the user for a letter and to play again at the end of rounds. Used in the index.js file.
-
-    

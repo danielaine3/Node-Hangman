@@ -12,6 +12,7 @@ function Letter(char) {
 			return "_ ";
 		}
 	};
+
 	this.guess = function(guess) {
 		//If character guessed == a letter in word change guessed value to true
 		if (guess === this.letter) {
@@ -20,4 +21,5 @@ function Letter(char) {
 		}
 	};
 }
+
 module.exports = Letter;

@@ -1,6 +1,7 @@
 var Word = require("./Word.js");
 var randomWords = require("random-words");
 var words = randomWords({ exactly: 50 });
+
 function WordSelect() {
 	this.guessesLeft = 10;
 	this.lettersGuessed = [];
@@ -9,11 +10,13 @@ function WordSelect() {
 		this.lettersGuessed = [];
 		this.word = this.randomWord();
 	};
+
 	this.randomWord = function() {
 		var randomWord = words[Math.floor(Math.random() * words.length)];
 		var newWord = new Word(randomWord);
 		return newWord;
 	};
+
 	this.printResults = function(str) {
 		switch(str) {
 			case "already guessed":
@@ -34,8 +37,10 @@ function WordSelect() {
 				console.log("error");
 		}
 	};
+
 	this.endGame = function() {
 		console.log("Game over.");
 	}
 }	
+
 module.exports = WordSelect;

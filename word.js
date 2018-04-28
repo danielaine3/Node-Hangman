@@ -1,4 +1,5 @@
 var Letter = require ('./Letter.js');
+
 function Word(word) {
 	this.letters = [];
 	for (var i = 0; i < word.length; i++) {
@@ -30,4 +31,5 @@ function Word(word) {
 		return true;
 	}
 };
+
 module.exports = Word;
